@@ -30,12 +30,16 @@ export const Card = styled.div`
     margin-bottom: 0.5rem;
 
     a {
-      display: flex;
-      gap: 0.5rem;
       color: ${(props) => props.theme['blue-300']};
       font-size: 0.75rem;
       font-weight: 700;
     }
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
   }
 
   h2 {
@@ -49,5 +53,13 @@ export const Card = styled.div`
     display: flex;
     align-items: flex-end;
     gap: 1.5rem;
+
+    a {
+      color: ${(props) => props.theme['gray-100']};
+
+      svg {
+        color: ${(props) => props.theme['gray-400']};
+      }
+    }
   }
 `

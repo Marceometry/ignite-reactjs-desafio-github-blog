@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { GithubProfileInfo } from '../../@types'
 import { api } from '../../api'
+import { GithubBrand, UserGroup } from '../../assets'
+import { ArrowUpRightFromSquare } from '../../assets/arrow-up-right-from-square'
 import { Header, Card } from '../../components'
 import { HomeContent } from './styles'
 
@@ -8,23 +10,15 @@ export const Home = () => {
   const [profileInfo, setProfileInfo] = useState<GithubProfileInfo | null>(null)
 
   useEffect(() => {
-    // api.get('/users/marceometry').then(({ data }) => {
-    //   setProfileInfo({
-    //     avatar_url: data.avatar_url,
-    //     bio: data.bio,
-    //     followers: data.followers,
-    //     html_url: data.html_url,
-    //     login: data.login,
-    //     name: data.name,
-    //   })
-    // })
-    setProfileInfo({
-      avatar_url: 'https://avatars.githubusercontent.com/u/76463400?v=4',
-      bio: '20 years old - FrontEnd Developer - ReactJS.',
-      followers: 14,
-      html_url: 'https://github.com/Marceometry',
-      login: 'Marceometry',
-      name: 'Marcelino Teixeira',
+    api.get('/users/marceometry').then(({ data }) => {
+      setProfileInfo({
+        avatar_url: data.avatar_url,
+        bio: data.bio,
+        followers: data.followers,
+        html_url: data.html_url,
+        login: data.login,
+        name: data.name,
+      })
     })
   }, [])
 
@@ -43,6 +37,7 @@ export const Home = () => {
               <h2>{profileInfo.name}</h2>
               <a target='_blank' href={profileInfo.html_url}>
                 GITHUB
+                <ArrowUpRightFromSquare />
               </a>
             </header>
 
@@ -50,10 +45,12 @@ export const Home = () => {
 
             <footer>
               <a target='_blank' href={profileInfo.html_url}>
+                <GithubBrand />
                 {profileInfo.login}
               </a>
               <a target='_blank' href={profileInfo.html_url + '?tab=followers'}>
-                {profileInfo.followers}
+                <UserGroup />
+                {profileInfo.followers} seguidores
               </a>
             </footer>
           </div>
